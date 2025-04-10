@@ -1142,6 +1142,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@minipack/example@workspace:apps/example":
+  version: 0.0.0-use.local
+  resolution: "@minipack/example@workspace:apps/example"
+  dependencies:
+    minipack: "workspace:*"
+  languageName: unknown
+  linkType: soft
+
+"@minipack/monorepo@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@minipack/monorepo@workspace:."
+  languageName: unknown
+  linkType: soft
+
 "@types/babel__core@npm:^7":
   version: 7.20.5
   resolution: "@types/babel__core@npm:7.20.5"
@@ -1387,9 +1401,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minipack@workspace:.":
+"minipack@workspace:*, minipack@workspace:packages/minipack":
   version: 0.0.0-use.local
-  resolution: "minipack@workspace:."
+  resolution: "minipack@workspace:packages/minipack"
   dependencies:
     "@babel/core": "npm:^7.26.0"
     "@babel/parser": "npm:^7.27.0"
@@ -1399,6 +1413,8 @@ __metadata:
     "@types/babel__traverse": "npm:^7"
     "@types/node": "npm:^20"
     typescript: "npm:^5.8.2"
+  bin:
+    minipack: dist/index.js
   languageName: unknown
   linkType: soft
 

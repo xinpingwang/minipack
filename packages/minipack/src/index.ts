@@ -29,7 +29,7 @@ function createAsset(filename: string): Asset {
 
   const { code } =
     transformFromAstSync(ast, undefined, {
-      presets: ["@babel/env"],
+      presets: [require.resolve("@babel/preset-env")],
     }) ?? {};
 
   return {
@@ -92,7 +92,10 @@ function bundle(graph: Asset[]) {
   return result;
 }
 
-const graph = createGraph(path.resolve(__dirname, "../example/src/entry.js"));
+const graph = createGraph(path.resolve(process.cwd(), "./src/entry.js"));
 const result = bundle(graph);
 
-fs.writeFileSync(path.resolve(__dirname, "../example/dist/bundle.js"), result);
+const outputDir = path.resolve(process.cwd(), "./dist");
+fs.mkdirSync(outputDir, { recursive: true }); // Ensure the directory exists
+
+fs.writeFileSync(path.join(outputDir, "bundle.js"), result);

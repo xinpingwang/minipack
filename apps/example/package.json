@@ -1,10 +1,10 @@
 {
-    "name": "@minipack/example",
-    "version": "0.0.1",
-    "scripts": {
-        "build": "minipack"
-    },
-    "devDependencies": {
-        "minipack": "workspace:*"
-    }
+  "name": "@minipack/example",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "minipack"
+  },
+  "devDependencies": {
+    "minipack": "workspace:*"
+  }
 }

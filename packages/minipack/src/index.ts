@@ -3,6 +3,7 @@ import * as parser from "@babel/parser";
 import traverse from "@babel/traverse";
 import { transformFromAstSync } from "@babel/core";
 import path from "node:path";
+import { loadConfig } from "./config";
 
 let ID = 0;
 
@@ -92,10 +93,13 @@ function bundle(graph: Asset[]) {
   return result;
 }
 
-const graph = createGraph(path.resolve(process.cwd(), "./src/entry.js"));
+const config = loadConfig();
+
+const graph = createGraph(path.resolve(process.cwd(), config.entry));
 const result = bundle(graph);
 
-const outputDir = path.resolve(process.cwd(), "./dist");
+const outputFile = path.resolve(process.cwd(), config.output);
+const outputDir = path.dirname(outputFile);
 fs.mkdirSync(outputDir, { recursive: true }); // Ensure the directory exists
 
-fs.writeFileSync(path.join(outputDir, "bundle.js"), result);
+fs.writeFileSync(outputFile, result);
